@@ -82,6 +82,24 @@ namespace Project02.Tests
         }
 
         [TestMethod]
+        public void NotAllowTieSingleDeckNoSuitPrecedence()
+        {
+            //Arrange
+            var deckService = new Mock<IDeckService>();
+            deckService.SetupSequence(x => x.PlayCard(It.IsAny<Deck>())).Returns(new Card(7, Suit.Clubs)).Returns(new Card(7, Suit.Hearts)).Returns(new Card(7, Suit.Diamonds)).Returns(new Card(7, Suit.Spades)).Returns(new Card(11, Suit.Diamonds)).Returns(new Card(7, Suit.Hearts));
+
+            var gameSettings = new GameSettings { AllowTie = false, DeckCount = 1, DeckCardCount = 52 };
+            var suitService = new SuitService(gameSettings);
+            var gameService = new GameService(gameSettings, deckService.Object, suitService);
+
+            //Act
+            var result = gameService.Play();
+
+            //Assert
+            Assert.AreEqual("Winning card: Diamonds, 11", result);
+        }
+
+        [TestMethod]
         public void AllowTieSingleDeckWithWildcard()
         {
             //Arrange

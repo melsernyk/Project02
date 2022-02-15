@@ -17,7 +17,13 @@ namespace Project02.Services
 
         public string Play()
         {
-            return _gameBehaviour.Play();
+            string result;
+            do
+            {
+                result = _gameBehaviour.Play();
+            } while (result.Length == 0);
+
+            return result;
         }
     }
 }
