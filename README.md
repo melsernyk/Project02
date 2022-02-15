@@ -1,6 +1,6 @@
 # Project02
-Project02.csproj - Question 2 implementation. \n
-Project02.Tests.csproj - Question 2 unit tests. \n
+Project02.csproj - Question 2 implementation.
+Project02.Tests.csproj - Question 2 unit tests.
 
 Models:
   Deck - model for card deck
